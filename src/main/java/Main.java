@@ -22,6 +22,7 @@ public class Main {
         System.out.println("3 - find a game using id") ;
 
         int inputAction = scanner.nextInt();
+        scanner.nextLine();
 
         switch(inputAction){
             case 1: {
@@ -88,22 +89,32 @@ public class Main {
 
 
                 } else System.out.println("Type of game not valid");
+                System.out.println("----- UPDATED LIST OF GAMES -----");
+                System.out.println(Collection.printAllGames());
                 break;
             }
             case 2: {
-                System.out.println("Enter game ID");
-                String id = scanner.nextLine();
-                if(Collection.archive.values().contains(id))  Collection.removeGameById(id);
-                 else System.out.println("Id invalid.");
+                System.out.println("Enter game ID to be deleted");
+                String id = scanner.nextLine().toUpperCase();
+                if(Collection.archive.containsKey(id)) {
+                    Collection.removeGameById(id);
+                    System.out.println("Game with ID " + id + " successfully removed");
+                }
+                else System.out.println("Id invalid.");
+                System.out.println("----- UPDATED LIST OF GAMES -----");
+                System.out.println(Collection.printAllGames());
                 break;
             }
             case 3: {
-                System.out.println("Enter game ID");
-                String id = scanner.nextLine();
-                Collection.findById(id);
+                System.out.println("Enter game ID to be found");
+                String id = scanner.nextLine().toUpperCase();
+                if(Collection.archive.containsKey(id)) System.out.println("Game found: " + Collection.findById(id));
+                else System.out.println("Id invalid.");
+                break;
             }
+            default: System.out.println("Invalid selection. Please try again.");
         }
-        System.out.println(Collection.printAllGames());
+
 
     }
 
