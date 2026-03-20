@@ -1,29 +1,29 @@
-//Create a Maven application that manages a game collection composed of "Video Game" and "Board Game" elements. Every element in the collection has the following attributes:
-//Game ID (unique code)
-//    Title
-//    Publication Year
-//    Price (positive value)
+import entities.*;
 
-//Video games also have:
-//    Platform (e.g., PC, PS5, Xbox)
-//    Game length (in hours)
-//    Genre (an enum with a list of genres of your choice)
-
-//Board games instead have:
-//    Number of players (range from 2 to 10)
-//    Average match duration (in minutes)
-
-//Create a "Collection" class that implements the following methods:
-//    Add an element (it must not be possible to insert an element with the same ID)
-//    Search by ID
-//    Search by price: must return a list of games with a price lower than the price entered
-//    Search by number of players
-//    Remove an element given an ID code
-//    Update an existing element given the ID
-//    Collection statistics: print the total number of video games and board games present, the game with the highest price, and the average price of all elements.
-//The user must be able to access all operations via a Scanner. Use Java Streams and Lambda functions to implement the algorithms.
-//Handle all possible exceptions, such as adding an element that already exists, searching for an invalid ID, etc.
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
+    static Collection myCollection = new Collection();
+
+
+    //static List<Game> stock = new ArrayList<>();
+    public static void main(String[] args) {
+       initializeGames();
+        System.out.println(Collection.printStatistics());
+    }
+
+    public static void initializeGames() {
+        // board games
+        Collection.addGame(new BoardGame(Collection.createId("BG"), "Settlers of Catan", 1985, 45.5, 4, 45));
+        Collection.addGame(new BoardGame(Collection.createId("BG"), "Dominion", 1999, 38.9, 4, 60));
+        Collection.addGame(new BoardGame(Collection.createId("BG"), "Clue", 1975, 22.0, 8, 35));
+        Collection.addGame(new BoardGame(Collection.createId("BG"), "Carcassone", 1988, 36.8, 4, 45));
+        // video games
+        Collection.addGame(new VideoGame(Collection.createId("VG"), "Age of Empires IV", 2022, 45.8, "PC", 60, Genre.STRATEGY));
+        Collection.addGame(new VideoGame(Collection.createId("VG"), "The Legend of Zelda: Ocarina of Time", 1998, 129, "Nintendo 64", 300, Genre.ADVENTURE));
+        Collection.addGame(new VideoGame(Collection.createId("VG"), "Legend of Zelda: Tears of the Kingdom", 2022, 69.9, "Nintendo Switch", 250, Genre.ADVENTURE));
+        Collection.addGame(new VideoGame(Collection.createId("VG"), "The Witcher 3", 2014, 39.9, "PC", 300, Genre.RPG));
+    }
 }
