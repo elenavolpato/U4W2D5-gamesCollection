@@ -1,8 +1,6 @@
 package entities;
 //Create a "Collection" class that implements the following methods:
 
-
-
 //    Collection statistics: print the total number of video games and board games present, the game with the highest price, and the average price of all elements.
 
 import java.util.*;
@@ -74,6 +72,19 @@ public class Collection {
                 .map(Game::getTitle)
                 .orElse("no games found");
     }
+
+public static boolean printAllGames() {
+    if (archive.isEmpty()) {
+        System.out.println("The archive is currently empty.");
+        return false;
+    } else {
+        archive.values().forEach(System.out::println);
+        return true;
+    }
+
+}
+
+
 
     // games statistics
     public static Object printStatistics() {

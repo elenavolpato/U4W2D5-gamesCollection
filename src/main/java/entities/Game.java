@@ -27,4 +27,13 @@ public abstract class  Game {
     public double getPrice(){
         return price;
     }
+    @Override
+    public String toString() {
+        return "Game{" +
+                "gameId='" + gameId + '\'' +
+                ", title='" + title + '\'' +
+                ", year=" + year +
+                ", price=" + price +
+                '}';
+    }
 }
